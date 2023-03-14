@@ -3,7 +3,7 @@
       <ul>
         <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
           {{ todoItem }}
-          <span v-on:click="removeTodo(todoItem, index)" class="removeBtn">
+          <span v-on:click="()=> removeTodo(todoItem, index)" class="removeBtn">
             x
           </span>
         </li>
@@ -11,30 +11,25 @@
     </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      todoItems: []
-    }
-  },
-  created: function () {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i += 1) {
-        if (localStorage.key(i) !== 'loglever:webpack-dev-server') {
-          this.todoItems.push(localStorage.key(i))
-        }
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const todoItems = ref([])
+
+onMounted(() => {
+  if (localStorage.length > 0) {
+    for (let i = 0; i < localStorage.length; i += 1) {
+      if (localStorage.key(i) !== 'loglever:webpack-dev-server') {
+        todoItems.value.push(localStorage.key(i))
       }
     }
-  },
-  methods: {
-    removeTodo: function (todoItem, index) {
-      localStorage.removeItem(todoItem)
-      this.todoItems.splice(index, 1)
-    }
   }
-}
+})
 
+const removeTodo = (todoItem, index) => {
+  localStorage.removeItem(todoItem)
+  todoItem.value.splice(index, 1)
+}
 </script>
 
 <style scoped>
@@ -55,11 +50,6 @@ li {
   border : 1px solid rgb(129, 255, 249);
   transition: all .3s ease;
 }
-
-li:hover {
-    transform: scale(1.1);
-}
-
 .removeBtn {
     margin-left: auto;
     color : #de4343;

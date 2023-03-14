@@ -6,14 +6,9 @@
     </footer>
 </template>
 
-<script>
-export default {
-  methods: {
-    clearTodo: function () {
-      localStorage.clear()
-      window.location.reload() // 새로고침
-    }
-  }
+<script setup>
+const clearTodo = () => {
+  localStorage.clear()
 }
 </script>
 

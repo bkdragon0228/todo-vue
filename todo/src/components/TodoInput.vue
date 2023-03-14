@@ -5,33 +5,21 @@
     </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      newTodoItem: ''
-    }
-  },
-  methods: {
-    addTodo: function () {
-      if (this.newTodoItem === '') return
+<script setup>
+import { ref } from 'vue'
+const newTodoItem = ref('')
 
-      const todoData = {
-        completed: false,
-        item: this.newTodoItem
-      }
+const addTodo = () => {
+  if (newTodoItem.value === '') return
 
-      localStorage.setItem(this.newTodoItem, JSON.stringify(todoData))
-      this.clearInput()
-
-      window.location.reload() // 새로고침
-    },
-    clearInput: function () {
-      this.newTodoItem = ''
-    }
+  const todoData = {
+    completed: false,
+    item: newTodoItem.value
   }
-}
 
+  localStorage.setItem(newTodoItem.value, JSON.stringify(todoData))
+  newTodoItem.value = ''
+}
 </script>
 
 <style scoped>
