@@ -7,9 +7,13 @@
 </template>
 
 <script setup>
+import { todoListStore } from '../stores/list'
+const { clearTodoList } = todoListStore()
+
 const clearTodo = () => {
-  localStorage.clear()
+  clearTodoList()
 }
+
 </script>
 
 <style scoped>

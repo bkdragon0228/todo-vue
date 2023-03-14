@@ -1,7 +1,10 @@
 <template>
     <div>
+      <div>
+        {{ getTodoLength }}개
+      </div>
       <ul>
-        <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem">
+        <li v-for="(todoItem, index) in todoList" v-bind:key="todoItem">
           {{ todoItem }}
           <span v-on:click="()=> removeTodo(todoItem, index)" class="removeBtn">
             x
@@ -12,24 +15,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { todoListStore } from '../stores/list'
 
-const todoItems = ref([])
+const { todoList, getTodoLength } = todoListStore()
 
-onMounted(() => {
-  if (localStorage.length > 0) {
-    for (let i = 0; i < localStorage.length; i += 1) {
-      if (localStorage.key(i) !== 'loglever:webpack-dev-server') {
-        todoItems.value.push(localStorage.key(i))
-      }
-    }
-  }
-})
-
-const removeTodo = (todoItem, index) => {
-  localStorage.removeItem(todoItem)
-  todoItem.value.splice(index, 1)
+const removeTodo = (todoItem) => {
+  const index = todoItem.value.indexof(todoItem)
+  todoList.value.splice(index, 1)
 }
+
 </script>
 
 <style scoped>

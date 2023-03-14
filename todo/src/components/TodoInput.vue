@@ -1,25 +1,21 @@
 <template>
     <div class="inputBox shadow">
         <input type="text" v-model="newTodoItem" @keyup.enter="addTodo"/>
-        <button v-on:click="addTodo" class="addBtn">add</button>
+        <button v-on:click="() => addTodoList(newTodoItem)" class="addBtn">add</button>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { todoListStore } from '../stores/list'
 const newTodoItem = ref('')
+const { addTodoList } = todoListStore()
 
 const addTodo = () => {
-  if (newTodoItem.value === '') return
-
-  const todoData = {
-    completed: false,
-    item: newTodoItem.value
-  }
-
-  localStorage.setItem(newTodoItem.value, JSON.stringify(todoData))
+  addTodoList(newTodoItem.value)
   newTodoItem.value = ''
 }
+
 </script>
 
 <style scoped>
