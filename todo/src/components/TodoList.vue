@@ -19,9 +19,9 @@ import { todoListStore } from '../stores/list'
 
 const { todoList, getTodoLength } = todoListStore()
 
-const removeTodo = (todoItem) => {
-  const index = todoItem.value.indexof(todoItem)
-  todoList.value.splice(index, 1)
+const removeTodo = (todoItem, index) => {
+  console.log(todoItem)
+  todoList.splice(index, 1)
 }
 
 </script>
