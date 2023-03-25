@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { VueQueryPlugin } from 'vue-query'
+import 'remixicon/fonts/remixicon.css'
 
 import { createPinia } from 'pinia'
 

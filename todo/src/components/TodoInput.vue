@@ -33,7 +33,7 @@ input:focus {
 .inputBox input {
     width : 200px;
     height: 30px;
-    border: 1px solid lightcyan;
+    border: 1px solid cyan;
     font-size : 0.9rem;
     box-shadow: 20px;
     transition: all .3s ease;
