@@ -1,7 +1,11 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="homeButtons">
+    <button class="button">
+      <router-link to="/todo">TO-DO</router-link>
+    </button>
+    <button class="button">
+      <router-link to="/weather">Weaders</router-link>
+    </button>
   </div>
 </template>
 
@@ -14,3 +18,26 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.homeButtons {
+  padding : 20px;
+  width : 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1rem;
+}
+
+.button {
+  padding : 20px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+</style>

@@ -1,17 +1,20 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text" v-model="newTodoItem" @keyup.enter="addTodo"/>
-        <button v-on:click="() => addTodoList(newTodoItem)" class="addBtn">add</button>
+        <InputAtom :type="text" :on-click="addTodo" v-model="newTodoItem"/>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { todoListStore } from '../stores/list'
-const newTodoItem = ref('')
+import { todoListStore } from '../../stores/list'
+import InputAtom from '../InputAtom.vue'
+
 const { addTodoList } = todoListStore()
+const newTodoItem = ref('')
 
 const addTodo = () => {
+  if (!newTodoItem.value) return
+
   addTodoList(newTodoItem.value)
   newTodoItem.value = ''
 }

@@ -1,10 +1,7 @@
 <template>
   <div class="container">
     <div class="search-box">
-      <input type="text" placeholder="Enter your location" v-model="city" class="search-bar" @keyup.enter="handleInput"/>
-      <button class="search-btn" v-on:click="handleInput">
-        <i class="ri-search-line"></i>
-      </button>
+      <InputAtom :type="text" :on-click="handleInput" v-model="city"/>
     </div>
 
     <div v-if="weatherData" class="weather-box">
@@ -13,16 +10,19 @@
         {{ weatherData.weather[0].temp }} : {{ weatherData.weather[0].description }}
       </div>
     </div>
-    <div class="not-found" v-if="isNotFound">
+    <div v-else class="not-found">
         <img src="@/assets/images/404.png" alt="404">
     </div>
   </div>
 </template>
 
 <script setup>
-import axios from 'axios'
 import { useMutation } from 'vue-query'
 import { ref } from 'vue'
+
+import axios from 'axios'
+
+import InputAtom from '../InputAtom.vue'
 
 const city = ref('')
 const isNotFound = ref(false)
@@ -95,7 +95,7 @@ const handleInput = () => {
   overflow: hidden;
   border-radius: 18px;
   transition: 0.6s ease-out;
-  border: 1px solid cyan;
+  border: none;
 }
 
 .search-box {

@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { todoListStore } from '../stores/list'
+import { todoListStore } from '../../stores/list'
 const { clearTodoList } = todoListStore()
 
 const clearTodo = () => {

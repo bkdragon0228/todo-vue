@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-      <TodoHeader></TodoHeader>
-      <WeaderView></WeaderView>
-      <TodoInput></TodoInput>
-      <TodoList></TodoList>
-      <TodoFooter></TodoFooter>
+      <header class="title" @click="pushToMain">TO-VUE</header>
+      <router-view />
   </div>
 </template>
 
 <script setup>
-import TodoHeader from './components/TodoHeader.vue'
-import TodoInput from './components/TodoInput.vue'
-import TodoList from './components/TodoList.vue'
-import TodoFooter from './components/TodoFooter.vue'
-import WeaderView from './components/WeaderView.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const pushToMain = () => {
+  router.push('/')
+}
 
 </script>
 
@@ -37,5 +36,17 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.title {
+  padding : 20px;
+  widows: 100px;
+  text-align: center;
+  font-size: 2rem;
+  color : black;
+}
+
+.title:hover {
+  text-decoration: underline;
 }
 </style>

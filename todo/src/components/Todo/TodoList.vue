@@ -1,12 +1,9 @@
 <template>
     <div>
-      <div>
-        {{ getTodoLength }}개
-      </div>
       <ul>
         <li v-for="(todoItem, index) in todoList" v-bind:key="todoItem">
           {{ todoItem }}
-          <span v-on:click="()=> removeTodo(todoItem, index)" class="removeBtn">
+          <span @:click="()=> removeTodo(todoItem, index)" class="removeBtn">
             x
           </span>
         </li>
@@ -15,9 +12,9 @@
 </template>
 
 <script setup>
-import { todoListStore } from '../stores/list'
+import { todoListStore } from '../../stores/list'
 
-const { todoList, getTodoLength } = todoListStore()
+const { todoList } = todoListStore()
 
 const removeTodo = (todoItem, index) => {
   console.log(todoItem)
@@ -48,5 +45,6 @@ li {
     margin-left: auto;
     color : #de4343;
     cursor: pointer;
+    border-radius: 20px;
 }
 </style>
